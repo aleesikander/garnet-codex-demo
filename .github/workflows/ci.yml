@@ -27,6 +27,16 @@ jobs:
         with:
           api_token: ${{ secrets.GARNET_API_TOKEN }}
 
+      # Temporary safe test used to verify that Garnet detects new outbound runtime behaviour.
+      - name: Controlled Garnet network demonstration
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl --fail --silent --show-error \
+            --max-time 15 \
+            https://example.com \
+            --output /dev/null
+
       - name: Set up Node.js
         uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
